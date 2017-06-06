@@ -1,0 +1,143 @@
+<html>
+	<head>
+	<title>Let's Multiply! - Train your multiplication skills!</title>
+	<style>
+		
+
+		@font-face{
+			font-family: "Bebas Neue";
+			src: url('BebasNeue.otf');
+		}
+
+		*::selection{
+			color: white;
+			background-color: #123456;
+		}
+
+		body{
+			font-family: "Bebas Neue";
+			padding: 0;
+			margin: 0;
+			text-align: center;
+			background-color: #770082;
+			color: white;
+		}
+		a{
+			color: #AAA;
+			font-family: "Rockwell", Kameron, serif;
+		}
+
+		h1{
+			font-size: 6em;
+			color: #770082;
+			background-color: white;
+		}
+		span, #display{
+			font-size: 5em;
+			color: white;
+		}
+
+		#input{
+			background-color: #8E3096;
+			border: none;
+			font-family: "Bebas Neue";
+			color: white;
+			font-size: 3em;
+			max-width: 100%;
+			text-align: center;
+		}
+
+		#input:focus{
+			outline: none;
+		}
+
+		#content{
+			position: relative;
+		}
+
+		.annotation{
+			max-width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			animation: fade-out 0.3s ease-in;
+			animation-fill-mode: forwards;
+		}
+		
+		@keyframes fade-out{
+			0% {opacity: 1; transform: scale(2);}
+			100% {opacity: 0; display: none; transform: scale(1);}
+		}
+	
+	</style>
+	</head>
+	<body>
+		<h1>Let's Multiply!</h1>
+		<div id="content">
+			<div id="display"></div>
+			<input id="input" type="number" onkeypress="validateInput(event)">
+		</div>
+	
+		<script>
+
+			var input = document.querySelector('#input');
+
+			var display = document.querySelector('#display');
+
+			var content = document.querySelector('#content');
+
+			console.log(input);
+
+			generateNumbers();
+			//Values to multiply, the multiplied answer
+			var m1, m2 = 0;
+			var answer;
+			var tries = 0; //amount of tries
+			var ANIMATION_LENGTH = 300;//milliseconds
+
+
+			//Generate new numbers
+			function generateNumbers(){
+				m1 = Math.round(Math.random()*10);//from 0-10
+				m2 = Math.round(Math.random()*10);
+				//console.log(m1, m2);
+				answer = m1 * m2;
+				//console.log(answer);
+				display.innerHTML = m1 + ' 	&#215; ' + m2;
+			}
+			function validateInput(event){
+				if(event.keyCode == 13){
+					console.log('Validating input...');
+
+					console.log('Input value: ' + input.value);
+
+					console.log('Answer: ' + answer);
+					if(input.value == answer){
+						console.log('Correct!');
+						putText('Success!', 'green');
+						generateNumbers();
+					}else{
+						putText('Fail!', 'red');
+						console.log('Incorrect!');
+					}
+					tries++;
+					input.value = '';
+				}
+			}
+
+			function putText(text, color){
+				var el = document.createElement('span');
+				el.id = 'annotation-' + tries;
+				el.className = 'annotation'
+				el.style.color = color;
+				el.innerHTML = text;
+				content.appendChild(el);
+				setTimeout(function(){
+					content.removeChild(el);
+				}, ANIMATION_LENGTH);
+			}
+		</script>
+
+	</body>
+</html>
