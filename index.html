@@ -22,6 +22,7 @@
 			text-align: center;
 			background-color: #770082;
 			color: white;
+			overflow-x: hidden; /*Prevent overflow issue with .annotation*/
 		}
 		a{
 			color: #AAA;
@@ -58,6 +59,7 @@
 
 		.annotation{
 			max-width: 100%;
+			display: inline-block;
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -77,7 +79,11 @@
 		<h1>Let's Multiply!</h1>
 		<div id="content">
 			<div id="display"></div>
-			<input id="input" type="number" onkeypress="validateInput(event)">
+
+			<input id="input" type="tel" onkeydown="validateInput(event)">
+			<input type="submit"/>
+
+
 		</div>
 	
 		<script>
@@ -108,7 +114,11 @@
 				display.innerHTML = m1 + ' 	&#215; ' + m2;
 			}
 			function validateInput(event){
-				if(event.keyCode == 13){
+				//event.preventDefault();
+				//event.stopPropagation();
+				if(event.key == 'Enter' || event.keyCode == 9){
+					event.preventDefault();
+					input.focus();
 					console.log('Validating input...');
 
 					console.log('Input value: ' + input.value);
@@ -125,6 +135,7 @@
 					tries++;
 					input.value = '';
 				}
+				
 			}
 
 			function putText(text, color){
