@@ -1,0 +1,123 @@
+@font-face{
+	font-family: "Bebas Neue";
+	src: url('BebasNeue.otf');
+}
+
+*::selection{
+	color: white;
+	background-color: #123456;
+}
+
+body{
+	font-family: "Bebas Neue";
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	background-color: #770082;
+	color: white;
+	overflow-x: hidden; /*Prevent overflow issue with .annotation*/
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+a{
+	color: #AAA;
+	font-family: "Rockwell", Kameron, serif;
+}
+
+h1{
+	font-size: 12vw;
+	color: #770082;
+	background-color: white;
+	margin: 0;
+}
+span, #display{
+	font-size: 5em;
+	color: white;
+}
+
+#input{
+	background-color: #8E3096;
+	border: none;
+	font-family: "Bebas Neue";
+	color: white;
+	font-size: 3em;
+	max-width: 100%;
+	text-align: center;
+}
+
+#input:focus{
+	outline: none;
+}
+
+#content{
+	position: relative;
+}
+
+.annotation{
+	max-width: 100%;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	animation: fade-out 0.3s ease-in;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fade-out{
+	0% {opacity: 1; transform: scale(2);}
+	100% {opacity: 0; display: none; transform: scale(1);}
+}
+
+
+
+/*
+*
+*
+* 	NUMPAD
+*
+* 
+ */
+
+*::selection{
+	color: white;
+	background-color: #123456;
+}
+
+.calc-container{
+	display: grid;
+	grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+	height: 50%;
+}
+
+.calc-container div{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+
+	background-color: #770082;
+	color: white;
+	border: solid 1px #8E3096;
+
+	min-height: 60px;
+	font-size: 50pt;
+
+	font-family: 'Bebas Neue', sans-serif;
+	user-select: none;
+	transition: background-color 0.2s ease-in;
+}
+
+
+
+.active, .calc-container div:hover{
+	background-color: #456789;
+	cursor: pointer;
+	border-color: white;
+}
+
+.enter{
+	grid-column-start: span 2;
+}

@@ -2,78 +2,7 @@
 	<head>
 	<title>Let's Multiply! - Train your multiplication skills!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<style>
-		
-
-		@font-face{
-			font-family: "Bebas Neue";
-			src: url('BebasNeue.otf');
-		}
-
-		*::selection{
-			color: white;
-			background-color: #123456;
-		}
-
-		body{
-			font-family: "Bebas Neue";
-			padding: 0;
-			margin: 0;
-			text-align: center;
-			background-color: #770082;
-			color: white;
-			overflow-x: hidden; /*Prevent overflow issue with .annotation*/
-		}
-		a{
-			color: #AAA;
-			font-family: "Rockwell", Kameron, serif;
-		}
-
-		h1{
-			font-size: 6em;
-			color: #770082;
-			background-color: white;
-		}
-		span, #display{
-			font-size: 5em;
-			color: white;
-		}
-
-		#input{
-			background-color: #8E3096;
-			border: none;
-			font-family: "Bebas Neue";
-			color: white;
-			font-size: 3em;
-			max-width: 100%;
-			text-align: center;
-		}
-
-		#input:focus{
-			outline: none;
-		}
-
-		#content{
-			position: relative;
-		}
-
-		.annotation{
-			max-width: 100%;
-			display: inline-block;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			animation: fade-out 0.3s ease-in;
-			animation-fill-mode: forwards;
-		}
-		
-		@keyframes fade-out{
-			0% {opacity: 1; transform: scale(2);}
-			100% {opacity: 0; display: none; transform: scale(1);}
-		}
-	
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<body>
 		<h1>Let's Multiply!</h1>
@@ -83,7 +12,23 @@
 			<input id="input" type="tel" onkeydown="validateInput(event)">
 
 		</div>
-	
+		
+		<div class="calc-container">
+			<!--
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+			<div>6</div>
+			<div>7</div>
+			<div>8</div>
+			<div>9</div>
+			<div>0</div>
+			<div class="enter">Enter</div>
+		-->
+		</div>
+		
 		<script>
 
 			var input = document.querySelector('#input');
