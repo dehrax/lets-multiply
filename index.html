@@ -11,7 +11,17 @@
 			<div id="display"></div>
 
 			<input id="input" type="tel" onkeydown="validateInput(event)">
-
+			
+			<div class="explosion">
+				<div class="particle"></div>
+				<div class="particle"></div>
+				<div class="particle"></div>
+				<div class="particle"></div>
+				<div class="particle"></div>
+				<div class="particle"></div>
+				<div class="particle"></div>
+				<div class="particle"></div>
+			</div>
 		</div>
 		
 		<div class="calc-container">
@@ -38,7 +48,10 @@
 
 			var content = document.querySelector('#content');
 
-			console.log(input);
+			//Explosion particles
+			var particles = document.querySelectorAll(".particle");
+
+			//console.log(input);
 
 			generateNumbers();
 			//Values to multiply, the multiplied answer
@@ -93,6 +106,42 @@
 					content.removeChild(el);
 				}, ANIMATION_LENGTH);
 			}
+
+			function initParticles(){
+				//console.log("Initianting particles");
+				//var particles = document.querySelectorAll(".particle");
+				particles.forEach((particle, index) => {
+					particle.style.transform = "rotate(" + (360 / particles.length) * (index + 1)  + "deg)";
+					console.log(particle.style.transform);
+				});
+			}
+			initParticles();
+
+			function explode(duration){
+				
+				var length = duration ? duration : 400;
+
+				particles.forEach((particle, index)=>{
+				
+					particle.style.transform = "rotate(" + (360 / particles.length) * (index)  + "deg)";
+					particle.style.opacity = "1"
+					particle.style.transition = "all 0." + length + "s ease-out";
+					particle.style.transform = "rotate(" + (360 / particles.length) * (index)  + "deg) translate(300%)";
+					particle.style.opacity = "0"
+					//console.log(particle.style.transform);
+				});
+
+				setTimeout(()=>{
+					//Reset
+					particles.forEach((particle, index)=>{
+						// Turn off transitions
+						particle.style.transition = "";
+						// Reset particle
+						particle.style.transform = "rotate(" + (360 / particles.length) * (index)  + "deg)";
+					});
+				}, length);
+			}
+			//explode();
 		</script>
 
 	</body>
